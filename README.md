@@ -8,11 +8,11 @@ npm install create-element-class --save-dev
 const createElementClass = require('create-element-class')
 
 const HelloWorld = createElementClass({
-  observedAttributes: ['foo', 'bar'],
   attributeChangedCallback(name, oldValue, newValue) {},
   connectedCallback() {},
   disconnectedCallback() {}
 })
+HelloWorld.observedAttributes: ['foo', 'bar'],
 
 customElements.define('hello-world', HelloWorld)
 ```
