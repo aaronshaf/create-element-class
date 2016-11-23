@@ -1,0 +1,23 @@
+{
+  "name": "create-element-class",
+  "version": "1.0.0",
+  "description": "ES5-friendly function for creating custom element classes",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronshaf/create-element-class.git"
+  },
+  "keywords": [
+    "Custom",
+    "Elements",
+    "web-components",
+    "Web",
+    "Components"
+  ],
+  "author": "Andy VanWagoner <thetalecrafter@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aaronshaf/create-element-class/issues"
+  },
+  "homepage": "https://github.com/aaronshaf/create-element-class#readme"
+}
