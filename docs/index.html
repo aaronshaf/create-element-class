@@ -6,52 +6,42 @@
   <script src="https://unpkg.com/@webcomponents/custom-elements@1.0.0-alpha.3"></script>
   <script src="index.js"></script>
   <style>
-  pre { margin-top: 8px; }
-  label, .label-text {
-    vertical-align: middle;
-    font-weight: normal;
-    margin-bottom: 0; /* override bootstrap */
-  }
   .example {
     margin-top: 36px;
     margin-bottom: 36px;
   }
   </style>
-  <script>
-  // https://github.com/component/escape-html/blob/master/index.js
-  var matchHtmlRegExp = /[""&<>]/;
-  function escapeHtml(a){var b=""+a,c=matchHtmlRegExp.exec(b);if(!c)return b;var d,e="",f=0,g=0;for(f=c.index;f<b.length;f++){switch(b.charCodeAt(f)){case 34:d="&quot;";break;case 38:d="&amp;";break;case 39:d="&#39;";break;case 60:d="&lt;";break;case 62:d="&gt;";break;default:continue}g!==f&&(e+=b.substring(g,f)),g=f+1,e+=d}return g!==f?e+b.substring(g,f):e}
-  </script>
 </head>
-<body class="container">
-  <div style="margin: 48px;">
-    <h1>create-element-class</h1>
-    <div class="example">
-      <script>
-      var HelloWorld = createElementClass({
-        connectedCallback: function () {
-          this.innerHTML = 'Hello, world.'
-        }
-      })
-      customElements.define('hello-world', HelloWorld)
-      </script>
-      <pre id="example1code"></pre>
-      <hello-world></hello-world>
-    </div>
+<body class="container" style="padding-top: 48px;">
+  <h1>create-element-class</h1>
+  <div class="example">
+    <script>
+    var HelloWorld = createElementClass({
+      connectedCallback: function () {
+        this.innerHTML = 'Hello, world. View my source.'
+      }
+    })
+    customElements.define('hello-world', HelloWorld)
+    </script>
+    <hello-world></hello-world>
   </div>
 
-  <script>
-    example1code.innerHTML = escapeHtml(
-`<scr` + `ipt>
-var HelloWorld = createElementClass({
-  connectedCallback: function () {
-    this.innerHTML = 'Hello, world.'
-  }
-})
-customElements.define('hello-world', HelloWorld)
-</scr` + `ipt>
-<hello-world></hello-world>`)
-  </script>
+  <div class="example">
+    <script>
+    var Seconds = createElementClass({
+      attributeChangedCallback(name, oldValue, newValue) {
+        this.innerHTML = this.getAttribute('time')
+      }
+    })
+    Seconds.observedAttributes = ['time']
+    customElements.define('custom-seconds', Seconds)
+    setInterval(function() {
+      var seconds = new Date().getSeconds()
+      document.querySelector('custom-seconds').setAttribute('time', seconds)
+    }, 1000)
+    </script>
+    <custom-seconds time="0"></custom-seconds>
+  </div>
 
   <script src="https://unpkg.com/github-corner@2.0.0"></script>
   <github-corner>
