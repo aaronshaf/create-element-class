@@ -14,7 +14,7 @@ const HelloWorld = createElementClass({
   disconnectedCallback() {}
 })
 
-customElements('hello-world', HelloWorld)
+customElements.define('hello-world', HelloWorld)
 ```
 
 ## Credit
