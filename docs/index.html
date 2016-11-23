@@ -5,16 +5,57 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
   <script src="https://unpkg.com/@webcomponents/custom-elements@1.0.0-alpha.3"></script>
   <script src="index.js"></script>
-</head>
-<body class="container" style="margin-top: 48px;">
+  <style>
+  pre { margin-top: 8px; }
+  label, .label-text {
+    vertical-align: middle;
+    font-weight: normal;
+    margin-bottom: 0; /* override bootstrap */
+  }
+  .example {
+    margin-top: 36px;
+    margin-bottom: 36px;
+  }
+  </style>
   <script>
-  var HelloWorld = createElementClass({
-    connectedCallback: function () {
-      this.innerHTML = 'Hello, world.'
-    }
-  })
-  customElements.define('hello-world', HelloWorld)
+  // https://github.com/component/escape-html/blob/master/index.js
+  var matchHtmlRegExp = /[""&<>]/;
+  function escapeHtml(a){var b=""+a,c=matchHtmlRegExp.exec(b);if(!c)return b;var d,e="",f=0,g=0;for(f=c.index;f<b.length;f++){switch(b.charCodeAt(f)){case 34:d="&quot;";break;case 38:d="&amp;";break;case 39:d="&#39;";break;case 60:d="&lt;";break;case 62:d="&gt;";break;default:continue}g!==f&&(e+=b.substring(g,f)),g=f+1,e+=d}return g!==f?e+b.substring(g,f):e}
   </script>
-  <hello-world></hello-world>
+</head>
+<body class="container">
+  <div style="margin: 48px;">
+    <h1>github-corner-element</h1>
+    <div class="example">
+      <script>
+      var HelloWorld = createElementClass({
+        connectedCallback: function () {
+          this.innerHTML = 'Hello, world.'
+        }
+      })
+      customElements.define('hello-world', HelloWorld)
+      </script>
+      <pre id="example1code"></pre>
+      <hello-world></hello-world>
+    </div>
+  </div>
+
+  <script>
+    example1code.innerHTML = escapeHtml(
+`<scr` + `ipt>
+var HelloWorld = createElementClass({
+  connectedCallback: function () {
+    this.innerHTML = 'Hello, world.'
+  }
+})
+customElements.define('hello-world', HelloWorld)
+</scr` + `ipt>
+<hello-world></hello-world>`)
+  </script>
+
+  <script src="https://unpkg.com/github-corner@2.0.0"></script>
+  <github-corner>
+    <a href="https://github.com/aaronshaf/create-element-class">GitHub</a>
+  </github-corner>
 </body>
 </html>
