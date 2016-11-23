@@ -7,6 +7,12 @@
     "type": "git",
     "url": "git+https://github.com/aaronshaf/create-element-class.git"
   },
+  "scripts": {
+    "build": "webpack -p"
+  },
+  "files": [
+    "index.js"
+  ],
   "keywords": [
     "Custom",
     "Elements",
